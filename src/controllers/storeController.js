@@ -1,5 +1,6 @@
 const Store = require("../models/Store");
 
+// ✅ Create a new store
 const createStore = async (req, res) => {
   try {
     const { name, location } = req.body;
@@ -27,9 +28,18 @@ const createStore = async (req, res) => {
   }
 };
 
-module.exports = { createStore };
+// ✅ Get all stores
+const getStores = async (req, res) => {
+  try {
+    const stores = await Store.find(); // Fetch all stores from the database
+    res.status(200).json(stores);
+  } catch (error) {
+    console.error("Error fetching stores:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
-
+module.exports = { createStore, getStores };
 
 
 

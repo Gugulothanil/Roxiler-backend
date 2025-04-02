@@ -1,5 +1,5 @@
 const express = require("express");
-const { createStore } = require("../controllers/storeController");
+const { createStore, getStores } = require("../controllers/storeController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
@@ -7,8 +7,10 @@ const router = express.Router();
 // Create a new store (Protected)
 router.post("/", authMiddleware, createStore);
 
-module.exports = router;
+// ✅ Add this GET route to fetch all stores
+router.get("/", getStores);
 
+module.exports = router;
 
 
 
